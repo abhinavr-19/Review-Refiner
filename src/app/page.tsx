@@ -1,6 +1,5 @@
 import AnimatedShapes from '@/components/AnimatedShapes';
 import ReviewPolisher from '@/components/ReviewPolisher';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -9,7 +8,6 @@ export default function Home() {
         <AnimatedShapes />
         <ReviewPolisher />
       </main>
-      <Footer />
     </>
   );
 }
