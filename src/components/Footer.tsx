@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="text-center text-sm text-muted-foreground">
         Created by{' '}
         <Link
-          href="https://github.com/AbhinavRajesh"
+          href="https://abhinavr.work"
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary hover:underline"
@@ -15,7 +15,7 @@ const Footer = () => {
         </Link>
         {' | '}
         <Link
-          href="https://github.com/AbhinavRajesh/review-refiner"
+          href="https://github.com/abhinavr-19/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary hover:underline"
