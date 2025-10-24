@@ -5,23 +5,23 @@ const Footer = () => {
     <footer className="w-full py-6 px-4 sm:px-6 bg-transparent border-none -mt-12">
       <div className="text-center text-sm text-muted-foreground">
         Created by{' '}
-        <Link
+        <a
           href="https://abhinavr.work"
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary hover:underline"
         >
           Abhinav R
-        </Link>
+        </a>
         {' | '}
-        <Link
+        <a
           href="https://github.com/abhinavr-19/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary hover:underline"
         >
           View on Github
-        </Link>
+        </a>
       </div>
     </footer>
   );
