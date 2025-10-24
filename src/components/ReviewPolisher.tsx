@@ -59,16 +59,16 @@ export default function ReviewPolisher() {
 
   return (
     <Card className="w-full max-w-2xl shadow-2xl shadow-primary/10">
-      <CardHeader className="text-center">
-        <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+      <CardHeader className="text-center px-4 sm:px-6">
+        <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
           ReviewRefiner
         </CardTitle>
-        <CardDescription className="pt-2">
+        <CardDescription className="pt-2 text-sm sm:text-base">
           Let AI perfect your review. Correct grammar, fix spelling, and improve
           clarity in one click.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 px-4 sm:px-6">
         <div className="grid w-full gap-2">
           <Label htmlFor="raw-review">Your Review</Label>
           <Textarea
@@ -76,8 +76,8 @@ export default function ReviewPolisher() {
             placeholder="Enter your review here..."
             value={rawText}
             onChange={(e) => setRawText(e.target.value)}
-            rows={6}
-            className="resize-none"
+            rows={5}
+            className="resize-none text-sm"
             disabled={isLoading}
           />
         </div>
@@ -88,14 +88,14 @@ export default function ReviewPolisher() {
             readOnly
             value={polishedText}
             placeholder="Your polished review will appear here..."
-            rows={6}
-            className="resize-none bg-muted/50"
+            rows={5}
+            className="resize-none bg-muted/50 text-sm"
           />
           {polishedText && (
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-0 right-0 mt-1 mr-1 h-8 w-8 text-muted-foreground hover:bg-transparent hover:text-foreground"
+              className="absolute top-0 right-0 mt-1 mr-1 h-7 w-7 sm:h-8 sm:w-8 text-muted-foreground hover:bg-transparent hover:text-foreground"
               onClick={handleCopy}
               aria-label="Copy to clipboard"
             >
@@ -108,11 +108,11 @@ export default function ReviewPolisher() {
           )}
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="px-4 sm:px-6">
         <Button
           onClick={handlePolish}
           disabled={isLoading || !rawText.trim()}
-          className="w-full font-semibold text-lg py-6 bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity"
+          className="w-full font-semibold text-base sm:text-lg py-4 sm:py-5 bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity"
         >
           {isLoading ? (
             <>
