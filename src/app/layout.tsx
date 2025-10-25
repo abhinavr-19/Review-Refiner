@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from '@/components/Header';
 
 export const metadata: Metadata = {
-  title: 'ReviewRefiner',
+  title: 'Review Refiner',
   description: 'Polish your reviews with the power of AI.',
 };
 

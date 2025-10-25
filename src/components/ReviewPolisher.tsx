@@ -61,7 +61,7 @@ export default function ReviewPolisher() {
     <Card className="w-full max-w-2xl shadow-2xl shadow-primary/10">
       <CardHeader className="text-center px-4 sm:px-6">
         <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          ReviewRefiner
+          Review Refiner
         </CardTitle>
         <CardDescription className="pt-2 text-sm sm:text-base">
           Let AI perfect your review. Correct grammar, fix spelling, and improve
