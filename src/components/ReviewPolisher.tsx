@@ -13,12 +13,15 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Loader2, Copy, Check } from "lucide-react";
+import { Loader2, Copy, Check, Star } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 export default function ReviewPolisher() {
   const [rawText, setRawText] = useState("");
   const [polishedText, setPolishedText] = useState("");
+  const [rating, setRating] = useState<number | null>(null);
+  const [hoveredRating, setHoveredRating] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const { toast } = useToast();
@@ -35,7 +38,7 @@ export default function ReviewPolisher() {
     setIsLoading(true);
     setPolishedText("");
     try {
-      const result = await polishReview({ text: rawText });
+      const result = await polishReview({ text: rawText, rating: rating || undefined });
       setPolishedText(result.polishedText);
     } catch (error) {
       console.error("Error polishing review:", error);
@@ -57,6 +60,8 @@ export default function ReviewPolisher() {
     });
   };
 
+  const currentRating = hoveredRating ?? rating;
+
   return (
     <Card className="w-full max-w-2xl shadow-2xl shadow-primary/10">
       <CardHeader className="text-center px-4 sm:px-6">
@@ -73,7 +78,7 @@ export default function ReviewPolisher() {
           <Label htmlFor="raw-review">Your Review</Label>
           <Textarea
             id="raw-review"
-            placeholder="Enter your review here..."
+            placeholder="e.g., 'service slow, but food very good. i like chicken. price okay.'"
             value={rawText}
             onChange={(e) => setRawText(e.target.value)}
             rows={5}
@@ -81,6 +86,30 @@ export default function ReviewPolisher() {
             disabled={isLoading}
           />
         </div>
+        <div className="grid w-full gap-2">
+            <Label>Rating (Optional)</Label>
+            <div className="flex items-center gap-2" onMouseLeave={() => setHoveredRating(null)}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onMouseEnter={() => setHoveredRating(star)}
+                  onClick={() => setRating(star)}
+                  className="p-0 bg-transparent border-none"
+                  aria-label={`Rate ${star} out of 5 stars`}
+                >
+                  <Star
+                    className={cn(
+                      "h-6 w-6 sm:h-7 sm:w-7 cursor-pointer transition-colors",
+                      currentRating && star <= currentRating
+                        ? "text-yellow-400 fill-yellow-400"
+                        : "text-muted-foreground/50"
+                    )}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
         <div className="grid w-full gap-2 relative">
           <Label htmlFor="polished-review">Polished Review</Label>
           <Textarea

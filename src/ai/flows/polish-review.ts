@@ -13,6 +13,7 @@ import {z} from 'genkit';
 
 const PolishReviewInputSchema = z.object({
   text: z.string().describe('The raw review text to be polished.'),
+  rating: z.number().min(1).max(5).optional().describe('An optional star rating from 1 to 5.'),
 });
 export type PolishReviewInput = z.infer<typeof PolishReviewInputSchema>;
 
@@ -30,16 +31,20 @@ const polishReviewPrompt = ai.definePrompt({
   input: {schema: PolishReviewInputSchema},
   output: {schema: PolishReviewOutputSchema},
   prompt: `You are an expert writing assistant specializing in making user reviews sound more complete and natural.
-Your task is to take the user's raw text, which may be brief or contain grammatical errors, and transform it into a well-written, eloquent review.
+Your task is to take the user's raw text, and optional star rating, and transform it into a well-written, eloquent review.
 
 - Correct all grammar and spelling mistakes.
 - Improve the clarity and flow of the text.
 - Expand on the user's points to make them sound more descriptive and natural, like a real, detailed review. For example, 'price okay' could become 'The prices were reasonable for the quality.'
 - Preserve the original sentiment and core meaning. If the user is unhappy, the polished review should reflect that. If they are happy, the review should be positive.
+- Use the star rating to guide the overall tone of the review. A low rating implies a negative experience, while a high rating implies a positive one.
 - Do not add any new information or facts that cannot be inferred from the original text.
 - The output must be only the polished review text, without any introductory phrases like "Here's the polished review:".
 
 Original Text: '{{{text}}}'
+{{#if rating}}
+Star Rating: {{{rating}}}/5
+{{/if}}
 Polished Text:`,
 });
 
