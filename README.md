@@ -1,6 +1,6 @@
 # ✍️ Review Refiner
 
-
+A web-based tool that uses AI to polish user reviews, correcting grammar, fixing spelling, and improving overall clarity in a single click.
 
 ### ✨ [Live Demo Link](https://studio--studio-4339710488-511c4.us-central1.hosted.app/)
 
